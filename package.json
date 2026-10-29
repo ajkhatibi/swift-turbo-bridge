@@ -1,0 +1,46 @@
+{
+  "name": "rn-swiftui-turbo-bridge",
+  "version": "1.0.0",
+  "description": "Typed React Native TurboModule and native SwiftUI telemetry surfaces",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest --runInBand",
+    "typecheck": "tsc --noEmit",
+    "codegen": "mkdir -p /tmp/telemetry-codegen && node node_modules/@react-native/codegen/lib/cli/combine/combine-js-to-schema-cli.js /tmp/telemetry-codegen/schema.json src/specs/NativeTelemetryBridge.ts && node node_modules/react-native/scripts/generate-specs-cli.js --platform ios --schemaPath /tmp/telemetry-codegen/schema.json --outputDir /tmp/telemetry-codegen --libraryName TelemetryBridgeSpec --libraryType modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajkhatibi/rn-swiftui-turbo-bridge.git"
+  },
+  "keywords": [],
+  "author": "Julian Khatibi",
+  "license": "MIT",
+  "type": "commonjs",
+  "types": "src/index.ts",
+  "codegenConfig": {
+    "name": "TelemetryBridgeSpec",
+    "type": "modules",
+    "jsSrcsDir": "src/specs",
+    "ios": {
+      "modulesProvider": {
+        "NativeTelemetryBridge": "TelemetryTurboModule"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "peerDependencies": {
+    "react": "19.2.3",
+    "react-native": "0.85.0"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.14",
+    "@types/react": "19.2.2",
+    "@types/react-test-renderer": "19.1.0",
+    "jest": "29.7.0",
+    "react-test-renderer": "19.2.3",
+    "ts-jest": "29.4.5",
+    "typescript": "5.9.3"
+  }
+}
